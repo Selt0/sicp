@@ -106,3 +106,106 @@ function f(x, y) {
 
   return x * square(a) + y * b + a * b;
 }
+
+//Conditional statements
+
+function expmod(base, exp, m) {
+  return exp === 0
+          ? 1
+          : is_even(exp)
+            ? expmod(base, exp / 2, m)
+              * expmod(base, exp / 2, m)
+              % m
+            : base 
+              * expmode(base, exp - 1, m)
+              % m;
+}
+//! expmod is called twice. Very unefficient
+
+function expmod(base, exp, m) {
+  if (exp === 0) {
+    return 1;
+  } else {
+    if (is_even(exp)) {
+      const to_half = expmod(base, exp / 2, m);
+      return to_half * to_half % m;
+    } else {
+      return base * expmod(base, exp - 1, m) % m;
+    }
+  }
+}
+
+function search(f, neg_point, pos_point) {
+  const midpoint = average(neg_point, pos_point);
+  if (close_enough(neg_point, pos_point)) {
+    return midpoint;
+  } else {
+    const test_value = f(midpoint);
+    if (positive(test_value)) {
+      return search(f, neg_point, midpoint);
+    } else if (negative(test_value)) {
+      return search(f, midpoint, pos_point);
+    } else {
+      return midpoint;
+    }
+  }
+}
+
+function close_enough(x, y) {
+  return abs(x - y) < 0.001;
+}
+//awkward because we can accidentally give it points at which f's values do not have the required sign, in which case we get a wrong answer
+
+//function to check which of the endpoints has a negative value and positive valu. If the function has the same sign, it signals an error
+function half_interval_method(f, a, b) {
+  const a_value = f(a);
+  const b_value = f(b);
+  return negative(a_value) && positive(b_value)
+          ? search(f, a, b)
+          : negative(b_value) && positive(a_value)
+            ? search(f, b, a)
+            : error('values are not of the opposite sign');
+}
+
+//search for a root of x^3 - 2x - 3 = 0
+half_interval_method(x => x * x * x - 2 * x - 3, 1.0, 2.0);
+
+const tolerance = 0.00001;
+function fixed_point(f, first_guess) {
+  function close_enough(x, y) {
+    return abs(x - y) < tolerance;
+  }
+
+  function try_with(guess) {
+    const next = f(guess);
+    return close_enough(guess, next)
+            ? next
+            : try_with(next)
+  }
+  return try_with(first_guess);
+}
+
+//sqaure root -> y * y = x
+// y = x / y
+
+//y = 1/2(y + x/y)
+
+function sqrt(x) {
+  return fixed_point( y => average(y, x / y), 1.0);
+}
+
+//average damping
+function average_damp(f) {
+  return x => average(x, f(x));
+}
+
+function sqrt(x) {
+  return fixed_point(average_damp(y => x / y), 1.0);
+}
+
+//There are many ways to formulate a process as a function
+
+//Experienced programmers know how to choose a process formulations 
+//that are particularly perspicuous, and where useful elements of 
+//the process are exposed as separate entities that can be reused 
+//in other applications

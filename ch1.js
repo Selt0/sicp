@@ -1,5 +1,44 @@
-//Exercise 1.1
+/*
+------------
+Exercise 1.1
+------------
+Below is a sequence of statements. Before you click on a statement, predict what the result of its evaluation will be. 
 
+10;
+
+5 + 3 + 4;
+
+9 - 1;
+
+6 / 2;
+
+2 * 4 + (4 - 6);
+
+const a = 3;
+const b = a + 1;
+a + b + a * b;
+
+a === b;
+
+b > a && b < a * b 
+  ? b : a
+
+a === 4 ? 6 : b === 4 ? 6 + 7 + a : 25
+
+2 + (b > a ? b : a)
+
+(a > b
+  ? a
+  : a < b
+    ? b
+    : - 1)
+  *
+  (a + 1);
+
+*/
+
+/* 
+ANSWER: 
 10;
 // -> 10
 
@@ -41,9 +80,13 @@ a === 4 ? 6 : b === 4 ? 6 + 7 + a : 25
   *
   (a + 1);
 // -> 16
+*/
 
-//Exercise 1.2
-/* Translate the following  expression into JavaScript
+/*
+------------
+Exercise 1.2
+------------
+Translate the following  expression into JavaScript
 
  5 + 4 + (2 - (3 - (6 + 4/5)))
  ----------------------------
@@ -52,19 +95,24 @@ a === 4 ? 6 : b === 4 ? 6 + 7 + a : 25
 
 (5 + 4 + (2 - (3 - (6 + 4/5)))) / (3 * (6 - 2) * (2 - 7));
 
-//Exercise 1.3
 /*
+------------
+Exercise 1.3
+------------
  Declare a function that takes three numbers as arguments and returns the sum of the squares of the two larger numbers.
  */
+function square(x) {
+  return x * x;
+}
 
 function sumOfSquares(a, b ,c) {
 //compare a & b to c
  return (a > c && b > c
-          ? a * a + b * b
+          ? square(a) + square(b)
           //compare b & c to a
           : b > a && c > a
-            ? b * b + c * c
-            : a * a + c * c);
+            ? square(b) + square(c)
+            : square(a) + sqaure(c));
 }
 
 sumOfSquares(1, 2, 3);
@@ -89,8 +137,10 @@ function f(x, y, z) {
 }
 */
 
-//Exercise 1.4
 /*
+------------
+Exercise 1.4
+------------
 Observe that our model of evaluation allows for application combinations whose function expressions are compound expressions. Use this observation to describe the behavior of the following function:
 
 function plus(a, b) { return a + b; }
@@ -102,14 +152,17 @@ function a_plus_abs_b(a, b) {
 Note that in the conditional expression, we cannot directly use the operators + and - instead of the names plus and minus because in infix notation, only operator symbols are allowed in the middle, not compound expressions.
 */
 
-/*ANSWER: 
+/*
+ANSWER: 
 function plus takes two arguments and returns the sum.
-function minus takes two arguments and  returns the difference
+function minus takes two arguments and returns the difference
 function a_plus_abs_b takes two arguments and returns the plus function if b is greater than or equal to 0, else it returns the minus function 
 */
 
-//Exercise 1.5
 /*
+------------
+Exercise 1.5
+------------
 Ben Bitdiddle has invented a test to determine whether the interpreter he is faced with is using applicative-order evaluation or normal-order evaluation. He declares the following two functions :
 
 function p() {
@@ -148,8 +201,11 @@ phi() --> error, too much recursion
 
 */
 
-//Exercise 1.6
-/* Alyssa P. Hacker doesn't like the syntax of conditional expressions, involving the characters ? and :. Why can't I just declare an ordinary conditional function whose application works just like conditional expressions? she asks. Alyssa's friend Eva Lu Ator claims this can indeed be done, and she declares a conditional function as follows:
+/*
+------------
+Exercise 1.6
+------------
+Alyssa P. Hacker doesn't like the syntax of conditional expressions, involving the characters ? and :. Why can't I just declare an ordinary conditional function whose application works just like conditional expressions? she asks. Alyssa's friend Eva Lu Ator claims this can indeed be done, and she declares a conditional function as follows:
 
 function conditional(predicate, then_clause, else_clause) {		    
     return predicate ? then_clause : else_clause;
@@ -172,16 +228,22 @@ function sqrt_iter(guess, x) {
                                  x));
 }
 
-What happens when Alyssa attempts to use this to compute square roots? Explain. */
+What happens when Alyssa attempts to use this to compute square roots? Explain. 
+*/
 
 /* ANSWER: 
 Because of applicative-order, the conditional function evalautes the arguments first. Which leads to sqrt_iter calling itself in an infinite loop. Too much recursion. Thus the condtional loop never actually gets run.
  */
 
-//Exercise 1.7 
-/*The good_enough test used in computing square roots will not be very effective for finding the square roots of very small numbers. Also, in real computers, arithmetic operations are almost always performed with limited precision. This makes our test inadequate for very large numbers. Explain these statements, with examples showing how the test fails for small and large numbers. An alternative strategy for implementing good_enough is to watch how guess changes from one iteration to the next and to stop when the change is a very small fraction of the guess. Design a square-root function that uses this kind of end test. Does this work better for small and large numbers? */
+/*
+------------
+Exercise 1.7
+------------
+The good_enough test used in computing square roots will not be very effective for finding the square roots of very small numbers. Also, in real computers, arithmetic operations are almost always performed with limited precision. This makes our test inadequate for very large numbers. Explain these statements, with examples showing how the test fails for small and large numbers. An alternative strategy for implementing good_enough is to watch how guess changes from one iteration to the next and to stop when the change is a very small fraction of the guess. Design a square-root function that uses this kind of end test. Does this work better for small and large numbers?
+ */
 
-/* ANSWER:
+/* 
+ANSWER:
 good_enough tests whether the returned value is greater than 0.001. this causes the program to calculate very long numbers.
 
 function good_enough(guess, x) {
@@ -219,8 +281,10 @@ function relative_error(estimate, reference) {
 }
 */
 
-//Exercise 1.8 
 /*
+------------
+Exercise 1.8
+------------
 Newton's method for cube roots is based on the fact that if 𝑦 is an approximation to the cube root of 𝑥, then a better approximation is given by the value
 
 𝑥/𝑦^2 + 2𝑦
@@ -259,3 +323,92 @@ function abs(x) {
 function cube(x) {
   return  x * x * x;
 }
+
+/*
+------------
+Exercise 1.29
+------------
+ Using Simpson's Rule, the integral of a function 𝑓 between 𝑎 and 𝑏 is approximated as
+
+ℎ/3[𝑦0+4𝑦1+2𝑦2+4𝑦3+2𝑦4+⋯+2𝑦𝑛−2+4𝑦𝑛−1+𝑦𝑛]
+
+where ℎ=(𝑏−𝑎)/𝑛, for some even integer 𝑛, and 𝑦𝑘=𝑓(𝑎+𝑘ℎ). (Increasing 𝑛 increases the accuracy of the approximation.) Declare a function that takes as arguments 𝑓, 𝑎, 𝑏, and 𝑛 and returns the value of the integral, computed using Simpson's Rule. Use your function to integrate cube between 0 and 1 (with 𝑛=100 and 𝑛=1000), and compare the results to those of the integral function shown above. 
+*/
+function sum( term, a, next, b) {
+  return a > b ? a : term(a) + sum(term, next(a), next, b);
+}
+
+function cube(x) {
+  return x * x * x;
+}
+
+function inc(k) {
+  return  k + 1;
+}
+function simspon_rule_integral(f, a, b, n) {
+  function h(h) {
+    function y(k) {
+      return f((k * h) + a);
+    }
+    function term(k) {
+      return k === 0 || k === n 
+             ? y(k) 
+             : k % 2 === 0 
+                ? 2 * y(k) 
+                : 4 * y(k);
+    }
+    return sum(term, 0, inc, n) * (h / 3);
+  }
+  return h((b - a) / n);
+}
+
+/*
+------------
+Exercise 1.30
+------------
+
+The sum function above generates a linear recursion. The function can be rewritten so that the sum is performed iteratively. Show how to do this by filling in the missing expressions in the following declaration:
+
+function sum(term, a, next, b) {
+    function iter(a, result) {
+        return ??
+               ? ??
+               : iter(??,??);
+    }
+    return iter(??, ??);
+}
+*/
+
+function sum(term, a, next, b) {
+  function iter(a, result) {
+    return a > b ? result : iter(next(a), result + term(a));
+  }
+  return iter(a, 0);
+}
+
+/*
+------------
+Exercise 1.34
+------------
+
+function f(g) {
+  return g(2);
+}
+
+What will these return?
+f(square);
+
+f(z => z * (z + 1));
+
+What happenes if we ask the interpreter to evaluate the combination f(f)? Explain
+*/
+
+/* ANSWER:
+
+f(square) returns 4 because f(square) results to f(square(g(2)))
+2 * 2 = 4;
+
+f (z => z * (z + 1)) returns 6 because z will equal 2;
+
+f(f) will return an error because the function f(g) returns g(2). so f(f) will return 2(2) which is a non-function value;
+*/

@@ -1,6 +1,6 @@
 /*
 ------------
-Exercise 3.1
+Exercise 1.29
 ------------
  Using Simpson's Rule, the integral of a function 𝑓 between 𝑎 and 𝑏 is approximated as
 
@@ -38,7 +38,7 @@ function simspon_rule_integral(f, a, b, n) {
 
 /*
 ------------
-Exercise 3.2
+Exercise 1.30
 ------------
 
 The sum function above generates a linear recursion. The function can be rewritten so that the sum is performed iteratively. Show how to do this by filling in the missing expressions in the following declaration:
@@ -59,3 +59,30 @@ function sum(term, a, next, b) {
   }
   return iter(a, 0);
 }
+
+/*
+------------
+Exercise 1.34
+------------
+
+function f(g) {
+  return g(2);
+}
+
+What will these return?
+f(square);
+
+f(z => z * (z + 1));
+
+What happenes if we ask the interpreter to evaluate the combination f(f)? Explain
+*/
+
+/* ANSWER:
+
+f(square) returns 4 because f(square) results to f(square(g(2)))
+2 * 2 = 4;
+
+f (z => z * (z + 1)) returns 6 because z will equal 2;
+
+f(f) will return an error because the function f(g) returns g(2). so f(f) will return 2(2) which is a non-function value;
+*/

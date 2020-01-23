@@ -259,4 +259,3 @@ function abs(x) {
 function cube(x) {
   return  x * x * x;
 }
-

@@ -1,6 +1,6 @@
-#Chapter 1 - Building Abstractions with Functions#
+#Chapter 1 - Building Abstractions with Functions
 
-##Abstraction##
+## Abstraction
 >Fancy way of saying, 'taking something that's really complex, taking a step back, and packaging it up in a way thats simpler and easier to understand from the top down.'
 
 All you need to know is what is important to you.
@@ -10,7 +10,7 @@ You don't know what's hapenning in the background but just by looking at the pro
 A car. Don't need to know what's under the hood, how the engine works,how it accelerates, etc. All you need to know is you use the wheel to turn, the gas pedal makes it go, and the brakes make it stop. 
 
 Under the hood, all those details can change. It can go from gas to electric, but it doesn't change how you operate the car.
-
+```javascript
 function 1to100() {
   let x = 0;
   for (let i = 0; i <= 100; i++) {
@@ -24,10 +24,10 @@ function 1to100() {
   loop_100_times();
   display_variables();
 }
-
+```
 ---
 
-```
+```javascript
 function square(x) {
   return x * x;
 }
@@ -40,11 +40,11 @@ function f(a) {
   return sum_of_squares(a + 1, a * 2);
 }
 ```
-##Applicative Order##
+## Applicative Order
 
 **Evaluate the arguments and then apply**
 
-```
+```javascript
 f(5)
 
 sum_of_squares(5 + 1, 5 * 2)
@@ -58,11 +58,11 @@ square(6) + square(10)
  136
 ```
 
-##Normal Order##
+## Normal Order
 
 **Fully expand then reduce**
 
-```
+```javascript
 f(5)
 
 sum_of_squares(5 + 1, 5 * 2)
@@ -79,15 +79,15 @@ square(5 + 1) + square(5 * 2)
 136
 ```
 
-###Aplicative vs Normal###
+### Aplicative vs Normal
 
-```
+```javascript
 function zero(x) {
   return x - x;
 }
 ```
 Applicative
-```
+```javascript
 zero(random10) 
 
 zero(8)
@@ -97,7 +97,7 @@ zero(8)
 0
 ```
 Normal
-```
+```javascript
 zero(random10)
 
 random10 - random10
@@ -108,11 +108,11 @@ random10 - random10
 ```
 ---
 
-##Internal declarations and block structure##
+## Internal declarations and block structure##
 
 The square-root program consists of separate functions :
 
-```
+```javascript
 function sqrt(x) {
   return sqrt_iter(1.0, x);
 }
@@ -132,7 +132,7 @@ The problem here is the only function that is important to users is `sqrt`. The 
 
 Localizing the functions also allow us to simplify the functions. Since `x` is bound to `sqrt`, the functions inside `sqrt` are in the scope of `x`. We can let `x` be a free variable/name. Aka *lexical scoping*.
 
-```
+```javascript
 function sqrt(x) {
   function good_enough(guess) {
     return abs(sqaure(guess) - x) < 0.001;
@@ -146,5 +146,6 @@ function sqrt(x) {
   return sqrt_iter(1.0);
 }
 ```
-
 Block strucutre is an important tool for helping to organize the construction of large programs
+
+---

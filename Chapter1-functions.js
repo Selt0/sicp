@@ -1,5 +1,55 @@
 /*
 ------------------------------------
+1.1 Building Abstractions with Functions
+------------------------------------
+*/
+const pi = 3.14159;
+const radius = 10;
+
+//simple abstraction
+const cirmcumference = 2 * pi * radius;
+
+function square(    x   ) { return x    *     x; }
+//  ^       ^       ^         ^    ^    ^     ^
+// To    square something,  take   it times itself.
+
+function sum_of_squares(x, y) {
+  return square(x) + square(y);
+}
+
+function f(a) {
+  return sum_of_squares(a + 1, a * 2);
+}
+
+//absolute zero, tenerary operator
+function abs(x) {
+  return x >= 0 ? x : -x;
+}
+
+//5 < x < 10
+x < 5 && x < 10
+
+function sqrt_iter(guess, x) {
+  return good_enough(guess, x) ? guess : sqrt_iter(improve(guess, x), x);
+}
+
+function improve(guess, x) {
+  return average(guess, x / guess);
+}
+
+function average(x, y) {
+  return (x + y) / 2;
+}
+
+function good_enough(guess, x) {
+  return abs(square(guess) - x) < 0.001;
+}
+
+function sqrt(x) {
+  return sqrt_iter(1, x);
+}
+/*
+------------------------------------
 1.3 Formulating Abstractions with
 Higher-Order Function
 ------------------------------------

@@ -287,7 +287,7 @@ Exercise 1.8
 ------------
 Newton's method for cube roots is based on the fact that if 𝑦 is an approximation to the cube root of 𝑥, then a better approximation is given by the value
 
-𝑥/𝑦^2 + 2𝑦
+𝑥/(𝑦^2) + 2𝑦
 ---------
     3
 
